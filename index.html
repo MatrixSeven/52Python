@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<title>css/jquery.fullPage.css</title>
+		<link rel="stylesheet" href="css/jquery.fullPage.css">
+		<style>
+			.demo {
+				top: -100%;
+				margin: auto;
+				display: block;
+				position: relative;
+				border-radius: 50px 50px 50px 50px;
+				-webkit-transition: all 1s ease-out;
+				-webkit-box-shadow: #666 0px 10px 10px;
+			}
+			
+			.demo:hover {
+				-webkit-transform: rotateZ(360deg);
+			}
+			
+			.section {
+				text-align: center;
+				font: 50px "Microsoft Yahei";
+				color: #fff;
+			}
+			
+			.section1 p,h3 {
+				position: relative;
+				left: -120%;
+			}
+			
+			.section2 p {
+				position: relative;
+				left: -120%;
+			}
+			
+			.section3 p {
+				position: relative;
+				bottom: -120%;
+			}
+			
+			.section4 p {
+				display: none;
+			}
+			
+			#menu {
+				margin: 0;
+				padding: 0;
+				position: fixed;
+				left: 10px;
+				top: 10px;
+				list-style-type: none;
+				z-index: 70;
+			}
+			
+			#menu li {
+				float: left;
+				margin: 0 10px 0 0;
+				font-size: 14px;
+			}
+			
+			#menu a {
+				float: left;
+				padding: 10px 20px;
+				background-color: #fff;
+				color: #333;
+				text-decoration: none;
+			}
+			
+			#menu .active a {
+				color: #fff;
+				background-color: #333;
+			}
+		</style>
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/jquery-ui-1.10.3.min.js"></script>
+		<script src="js/jquery.fullPage.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$.fn.fullpage({
+					slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
+					anchors: ['page1', 'page2', 'page3', 'page4'],
+					menu: '#menu',
+					afterLoad: function(anchorLink, index) {
+						if (index == '1') {
+							$('.section1').find('p').delay(500).animate({
+								left: '0'
+							}, 1500, 'easeOutExpo');
+							$('.section1').find('h3').delay(500).animate({
+								left: '0'
+							}, 1500, 'easeOutExpo');
+							$('.section1').find('img').delay(100).animate({
+								top: '5%'
+							}, 500, 'easeOutExpo');
+						}
+						if (index == 2) {
+							$('.section2').find('p').delay(500).animate({
+								left: '0'
+							}, 1500, 'easeOutExpo');
+						}
+						if (index == 3) {
+							$('.section3').find('p').delay(500).animate({
+								bottom: '0'
+							}, 1500, 'easeOutExpo');
+						}
+						if (index == 4) {
+							$('.section4').find('p').fadeIn(2000);
+						}
+					},
+					onLeave: function(index, direction) {
+						if (index == '1') {
+							$('.section1').find('p').delay(1000).animate({
+								left: '-120%'
+							}, 0, 'easeOutExpo');
+							$('.section1').find('h3').delay(1000).animate({
+								left: '220%'
+							}, 0, 'easeOutExpo');
+							$('.section1').find('img').delay(1000).animate({
+								top: '-100%'
+							}, 0, 'easeOutExpo');
+						}
+
+						if (index == '2') {
+							$('.section2').find('p').delay(500).animate({
+								opacity: 1
+							}, 1500, 'easeOutExpo');
+						}
+						if (index == '3') {
+							$('.section3').find('p').delay(500).animate({
+								bottom: '-120%'
+							}, 1500, 'easeOutExpo');
+						}
+						if (index == '4') {
+							$('.section4').find('p').fadeOut(2000);
+						}
+					}
+				});
+				$('.section1').find('p').delay(1000).animate({
+					left: '0'
+				}, 1500, 'easeOutExpo');
+				$('.section1').find('h3').delay(1000).animate({
+					left: '0'
+				}, 1500, 'easeOutExpo');
+				$('.section1').find('img').delay(100).animate({
+					top: '5%'
+				}, 500, 'easeOutExpo');
+			});
+		</script>
+	</head>
+
+	<body>
+
+		<ul id="menu">
+			<li data-menuanchor="page1" class="active"><a href="#page1">第一屏</a></li>
+			<li data-menuanchor="page2"><a href="#page2">第二屏</a></li>
+			<li data-menuanchor="page3"><a href="#page3">第三屏</a></li>
+			<li data-menuanchor="page4"><a href="#page4">第四屏</a></li>
+		</ul>
+		<div class="section section1">
+			<img class="demo" src="images/logo.png" />
+			<h3>吾爱Python</h3>
+			<p style="left: 220%;">WeLovePython</p>
+		</div>
+		<div class="section section2">
+			<h3>群简介/h3>
+			<p>XXXXXX</p>
+		</div>
+		<div class="section section3">
+			<h3>群规</h3>
+			<p>绑定的菜单没有默认的样式，你需要自行编写</p>
+		</div>
+		<div class="section section4">
+			<h3>快来加入我们把</h3>
+			<p>这是最后一屏</p>
+		</div>
+
+	</body>
+
+</html>
